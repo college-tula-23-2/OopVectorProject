@@ -97,3 +97,10 @@ int& Vector::operator[](int index)
 int Vector::Size() { return size; }
 
 int Vector::Capacity(){	return capacity; }
+
+void Vector::Clear()
+{
+	delete[] items;
+	size = 0;
+	capacity = 4;
+}

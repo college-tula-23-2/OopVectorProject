@@ -34,5 +34,7 @@ public:
 
 	int Size();
 	int Capacity();
+
+	void Clear();
 };
 
