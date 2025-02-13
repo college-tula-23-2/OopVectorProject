@@ -1,7 +1,10 @@
 #pragma once
+#include "VectorIterator.h"
+
+template <typename T>
 class Vector
 {
-	int* items;
+	T* items;
 	int size;
 	int capacity;
 
@@ -12,29 +15,35 @@ public:
 		capacity{ 0 } {};
 
 	Vector(int size)
-		: items{ new int[size + size / 2] },
+		: items{ new T[size + size / 2] },
 		size{ size },
 		capacity{ size + size / 2} {};
 
 	~Vector() { delete[] items; }
 
-	void PushBack(int value); // O(1)
-	void PushFront(int value); // O(N)
-	void Insert(int index, int value); // O(N)
+	void PushBack(T); // O(1)
+	void PushFront(T); // O(N)
+	void Insert(int, T); // O(N)
 
-	int PopBack();
-	int PopFront();
-	int Remove(int index);
+	T PopBack();
+	T PopFront();
+	T Remove(int);
 
-	int Item(int index);
-	void Item(int index, int value);
-	int& At(int index);
+	T Item(int);
+	void Item(int, T);
+	T& At(int);
 
-	int& operator[](int index);
+	T& operator[](int);
 
 	int Size();
 	int Capacity();
 
 	void Clear();
+
+	VectorIterator<T> Iterator()
+	{
+		return VectorIterator<T>(this);
+	}
 };
 
+#include "Vector.inl"

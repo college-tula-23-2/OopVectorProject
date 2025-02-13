@@ -132,6 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vector.h" />
+    <ClInclude Include="VectorIterator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Vector.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
