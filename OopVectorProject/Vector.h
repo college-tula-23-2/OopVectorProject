@@ -19,7 +19,13 @@ public:
 		size{ size },
 		capacity{ size + size / 2} {};
 
-	~Vector() { delete[] items; }
+	Vector(const Vector<T>& source);
+
+	~Vector() 
+	{ 
+		if(items != nullptr)
+			delete[] items; 
+	}
 
 	void PushBack(T); // O(1)
 	void PushFront(T); // O(N)
@@ -35,10 +41,12 @@ public:
 
 	T& operator[](int);
 
-	int Size();
+	int Size() const;
 	int Capacity();
 
 	void Clear();
+
+	Vector<T> operator=(const Vector<T>& source);
 
 	VectorIterator<T> Iterator()
 	{

@@ -13,6 +13,17 @@ void Vector<T>::NewCapacity()
 	items = itemsNew;
 }
 
+template<typename T>
+inline Vector<T>::Vector(const Vector<T>& source)
+{
+	this->size = source.size;
+	this->capacity = source.capacity;
+	this->items = new T[source.capacity];
+
+	for (int i{}; i < source.size; i++)
+		this->items[i] = source.items[i];
+}
+
 template <typename T>
 void Vector<T>::PushBack(T value)
 {
@@ -106,7 +117,7 @@ T& Vector<T>::operator[](int index)
 }
 
 template <typename T>
-int Vector<T>::Size() { return size; }
+int Vector<T>::Size() const { return size; }
 
 template <typename T>
 int Vector<T>::Capacity() { return capacity; }
@@ -117,4 +128,21 @@ void Vector<T>::Clear()
 	delete[] items;
 	size = 0;
 	capacity = 4;
+}
+
+template<typename T>
+inline Vector<T> Vector<T>::operator=(const Vector<T>& source)
+{
+	if (items != nullptr)
+		delete[] items;
+
+	this->size = source.size;
+	this->capacity = source.capacity;
+
+	this->items = new T[source.capacity];
+
+	for (int i{}; i < source.size; i++)
+		this->items[i] = source.items[i];
+
+	return *this;
 }
